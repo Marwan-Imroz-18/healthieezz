@@ -979,6 +979,186 @@ footer {
 }
 .sub-note a { color: var(--lime); text-decoration: none; }
 
+/* INTRO / BRAND STORY */
+.intro-section {
+  padding: 100px 5%;
+  background: var(--dark2);
+  position: relative;
+  overflow: hidden;
+}
+.intro-section::before {
+  content: '';
+  position: absolute;
+  top: -30%; left: -10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,244,0,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.intro-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+.intro-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 1px;
+}
+.intro-headline .lime { color: var(--lime); }
+.intro-lead {
+  font-size: 1.05rem;
+  color: var(--gray);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-top: 24px;
+}
+.intro-lead strong { color: var(--white); font-weight: 600; }
+
+.intro-promises {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+.intro-promise-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--lime);
+  margin-bottom: 8px;
+}
+.promise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  transition: border-color 0.2s;
+}
+.promise-item:hover { border-color: rgba(200,244,0,0.35); }
+.promise-dot {
+  width: 8px; height: 8px;
+  background: var(--lime);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.promise-text {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+.intro-programmes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 80px;
+}
+.programme-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.programme-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.programme-card:hover { transform: translateY(-4px); border-color: rgba(200,244,0,0.3); }
+.programme-card:hover::after { transform: scaleX(1); }
+.programme-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.programme-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.programme-desc {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.taglines-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.tagline-pill {
+  background: rgba(200,244,0,0.06);
+  border: 1px solid rgba(200,244,0,0.15);
+  color: var(--lime);
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+.tagline-pill:hover {
+  background: rgba(200,244,0,0.12);
+  border-color: var(--lime);
+}
+
+.intro-cta-block {
+  text-align: center;
+  padding: 60px 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.intro-cta-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,244,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.intro-cta-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.intro-cta-quote span { color: var(--lime); }
+.intro-cta-sub {
+  font-size: 0.95rem;
+  color: var(--gray);
+  max-width: 500px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.intro-cta-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .intro-top { grid-template-columns: 1fr; gap: 40px; }
+  .intro-programmes { grid-template-columns: 1fr; }
+}
+
 /* SCROLL ANIMATIONS */
 .reveal {
   opacity: 0;
@@ -1004,11 +1184,11 @@ footer {
 <nav>
   <div class="nav-logo">HEALTHIE<span>EZZ</span></div>
   <div class="nav-links">
+    <a href="#intro">About</a>
     <a href="#menu">Menu</a>
     <a href="#plans">Plans</a>
     <a href="#subscriptions">Subscribe</a>
     <a href="#how">How It Works</a>
-    <a href="#about">About</a>
     <a href="#menu" class="nav-cta">Order Now</a>
   </div>
   <button class="cart-btn" onclick="toggleCart()">
@@ -1110,6 +1290,81 @@ footer {
     <span>TASTE THE GAINS</span><span class="ticker-dot">✦</span>
   </div>
 </div>
+
+<!-- INTRO / BRAND STORY -->
+<section class="intro-section" id="intro">
+
+  <!-- TOP: Headline + Promise -->
+  <div class="intro-top reveal">
+    <div>
+      <div class="section-label">Welcome to Healthieez Kitchen</div>
+      <div class="intro-headline">
+        TRANSFORM<br>YOUR <span class="lime">HEALTH,</span><br>TRANSFORM<br>YOUR LIFE.
+      </div>
+      <p class="intro-lead">
+        At <strong>Healthieez Kitchen</strong>, we're passionate about fueling your journey to a healthier, fitter you. Our expertly crafted meals are designed to support your <strong>weight loss and muscle gain goals</strong>, with a focus on <strong>clean, oil-free, high-protein, low-carb, and low-calorie nutrition.</strong>
+      </p>
+    </div>
+    <div>
+      <div class="intro-promise-title">Our Promise</div>
+      <div class="intro-promises">
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <div class="promise-text">Delicious, chef-prepared meals tailored to your dietary needs</div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <div class="promise-text">Wholesome ingredients, carefully selected for maximum nutrition</div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <div class="promise-text">Balanced macros to support weight loss, muscle gain, and overall well-being</div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <div class="promise-text">Convenient, portion-controlled meals to fit your busy lifestyle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMMES -->
+  <div class="section-label" style="margin-bottom:24px;">Our Programmes</div>
+  <div class="intro-programmes reveal">
+    <div class="programme-card">
+      <div class="programme-icon">🔥</div>
+      <div class="programme-name">Weight Loss</div>
+      <div class="programme-desc">Shed those extra pounds with our calorie-deficit meals, designed to boost metabolism and support sustainable, long-term weight loss — without sacrificing taste.</div>
+    </div>
+    <div class="programme-card">
+      <div class="programme-icon">💪</div>
+      <div class="programme-name">Muscle Gain</div>
+      <div class="programme-desc">Fuel your fitness goals with our high-protein meals, expertly crafted to help you build lean muscle mass and recover faster after every session.</div>
+    </div>
+  </div>
+
+  <!-- TAGLINES -->
+  <div class="taglines-strip reveal">
+    <div class="tagline-pill">Fuel Your Fitness, Nourish Your Body</div>
+    <div class="tagline-pill">Healthy Eating, Made Easy</div>
+    <div class="tagline-pill">Transform Your Health, One Meal at a Time</div>
+    <div class="tagline-pill">Eat to Thrive, Not Just Survive</div>
+    <div class="tagline-pill">Your Health, Our Priority</div>
+  </div>
+
+  <!-- CTA BLOCK -->
+  <div class="intro-cta-block reveal">
+    <div class="intro-cta-quote">
+      "EAT CLEAN. LIVE HEALTHY.<br><span>BE FIT."</span>
+    </div>
+    <p class="intro-cta-sub">Let's work together to achieve your health and fitness goals. Explore our menus, choose your plan, and start your journey to a healthier, fitter you!</p>
+    <div class="intro-cta-btns">
+      <a href="#menu" class="btn-primary">Explore Menu →</a>
+      <a href="#subscriptions" class="btn-ghost">View Monthly Plans</a>
+    </div>
+  </div>
+
+</section>
 
 <!-- PLANS -->
 <section id="plans">
@@ -1285,7 +1540,7 @@ footer {
         <li>Non-veg &amp; veg options</li>
         <li>WhatsApp order management</li>
       </ul>
-      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Daily Basics plan (₹8,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+      <a class="sub-cta wa-link" data-msg="Hi! I want to subscribe to the Daily Basics plan (₹8,999/month). Please share details." target="_blank">Subscribe Now →</a>
     </div>
 
     <div class="sub-card">
@@ -1301,7 +1556,7 @@ footer {
         <li>Non-veg premium selection</li>
         <li>Priority WhatsApp support</li>
       </ul>
-      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the VIP Daily plan (₹11,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+      <a class="sub-cta wa-link" data-msg="Hi! I want to subscribe to the VIP Daily plan (₹11,999/month). Please share details." target="_blank">Subscribe Now →</a>
     </div>
 
     <div class="sub-card best-value">
@@ -1318,7 +1573,7 @@ footer {
         <li>Non-veg &amp; veg options</li>
         <li>Priority WhatsApp support</li>
       </ul>
-      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Complete Fuel plan (₹14,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+      <a class="sub-cta wa-link" data-msg="Hi! I want to subscribe to the Complete Fuel plan (₹14,999/month). Please share details." target="_blank">Subscribe Now →</a>
     </div>
 
     <div class="sub-card">
@@ -1334,7 +1589,7 @@ footer {
         <li>~150g+ protein per day</li>
         <li>Dedicated nutrition support</li>
       </ul>
-      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Athlete Pack (₹20,000/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+      <a class="sub-cta wa-link" data-msg="Hi! I want to subscribe to the Athlete Pack (₹20,000/month). Please share details." target="_blank">Subscribe Now →</a>
     </div>
 
     <div class="sub-card">
@@ -1350,13 +1605,13 @@ footer {
         <li>Non-veg &amp; veg options</li>
         <li>VIP WhatsApp concierge</li>
       </ul>
-      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Elite 3-Meal plan (₹22,000/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+      <a class="sub-cta wa-link" data-msg="Hi! I want to subscribe to the Elite 3-Meal plan (₹22,000/month). Please share details." target="_blank">Subscribe Now →</a>
     </div>
 
   </div>
   <div class="sub-note">
     All subscriptions are managed via WhatsApp. <br>
-    Questions? <a href="https://wa.me/917097041206" target="_blank">Chat with us directly →</a>
+    Questions? <a class="wa-link" data-msg="" target="_blank" style="color:var(--lime);text-decoration:none;">Chat with us directly →</a>
   </div>
 </section>
 
@@ -1408,7 +1663,7 @@ footer {
     <div>
       <div class="footer-heading">Contact</div>
       <ul class="footer-links">
-        <li><a href="https://wa.me/917097041206" target="_blank">📱 WhatsApp Us</a></li>
+        <li><a class="wa-link" data-msg="" target="_blank">📱 WhatsApp Us</a></li>
         <li><a href="https://www.instagram.com/healthieezz?igsh=MTF0NjhkNjcxZHhyYQ%3D%3D&utm_source=qr" target="_blank">📸 Instagram</a></li>
       </ul>
     </div>
@@ -1417,7 +1672,7 @@ footer {
     <div class="footer-copy">© 2026 Healthieezz. Built with 💚 for gains.</div>
     <div style="display:flex;gap:12px;align-items:center;">
       <a href="https://www.instagram.com/healthieezz?igsh=MTF0NjhkNjcxZHhyYQ%3D%3D&utm_source=qr" target="_blank" style="display:flex;align-items:center;gap:8px;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.25);color:#E1306C;padding:8px 16px;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(225,48,108,0.2)'" onmouseout="this.style.background='rgba(225,48,108,0.1)'">📸 @healthieezz</a>
-      <a href="https://wa.me/917097041206" target="_blank" class="footer-wa">📱 Order on WhatsApp</a>
+      <a class="footer-wa wa-link" data-msg="" target="_blank">📱 Order on WhatsApp</a>
     </div>
   </div>
 </footer>
@@ -1440,8 +1695,18 @@ function animCursor() {
 animCursor();
 
 // ─── SECURITY: Obfuscated WhatsApp number ─────────
-// 917097041206 base64 = OTE3MDk3MDQxMjA2
-const WHATSAPP_NUMBER = atob('OTE3MDk3MDQxMjA2');
+const WHATSAPP_NUMBER = atob('OTE2MzA1MTIzNDgw');
+
+// ─── Inject all WA links at runtime (number never in HTML) ───
+function _initWALinks() {
+  document.querySelectorAll('.wa-link').forEach(el => {
+    const msg = el.dataset.msg || '';
+    el.href = msg
+      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`
+      : `https://wa.me/${WHATSAPP_NUMBER}`;
+  });
+}
+document.addEventListener('DOMContentLoaded', _initWALinks);
 
 const menuItems = [
   // NON-VEG
