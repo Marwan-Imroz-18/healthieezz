@@ -870,6 +870,115 @@ footer {
   .about-visual { display: none; }
 }
 
+/* SUBSCRIPTIONS */
+.sub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 60px;
+}
+.sub-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px 28px;
+  position: relative;
+  transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.sub-card:hover {
+  border-color: rgba(200,244,0,0.5);
+  transform: translateY(-5px);
+  background: var(--dark3);
+}
+.sub-card.best-value {
+  border-color: var(--lime);
+  background: linear-gradient(135deg, rgba(200,244,0,0.07) 0%, var(--card) 60%);
+}
+.sub-best-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--lime);
+  color: var(--dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  font-family: 'Space Mono', monospace;
+}
+.sub-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.sub-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.sub-tagline {
+  font-size: 0.78rem;
+  color: var(--lime);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.sub-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.sub-price span { font-size: 1.2rem; vertical-align: super; }
+.sub-per { font-size: 0.75rem; color: var(--gray); margin-bottom: 24px; }
+.sub-features {
+  list-style: none;
+  margin-bottom: 28px;
+  flex: 1;
+}
+.sub-features li {
+  font-size: 0.83rem;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; gap: 10px;
+  color: var(--white);
+}
+.sub-features li::before { content: '✓'; color: var(--lime); font-weight: 700; font-size: 0.9rem; }
+.sub-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 13px;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: none;
+  transition: all 0.2s;
+  border: 1px solid var(--lime);
+  color: var(--lime);
+  background: transparent;
+}
+.sub-cta:hover { background: var(--lime); color: var(--dark); }
+.sub-card.best-value .sub-cta {
+  background: var(--lime);
+  color: var(--dark);
+}
+.sub-card.best-value .sub-cta:hover { background: var(--lime-dark); }
+.sub-note {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+.sub-note a { color: var(--lime); text-decoration: none; }
+
 /* SCROLL ANIMATIONS */
 .reveal {
   opacity: 0;
@@ -897,6 +1006,7 @@ footer {
   <div class="nav-links">
     <a href="#menu">Menu</a>
     <a href="#plans">Plans</a>
+    <a href="#subscriptions">Subscribe</a>
     <a href="#how">How It Works</a>
     <a href="#about">About</a>
     <a href="#menu" class="nav-cta">Order Now</a>
@@ -925,8 +1035,10 @@ footer {
       <div class="cart-total-label">Total</div>
       <div class="cart-total-amount" id="cartTotal">₹0</div>
     </div>
-    <input class="name-input" id="customerName" placeholder="Your name" type="text">
-    <input class="phone-input" id="customerPhone" placeholder="WhatsApp number (+91...)" type="tel">
+    <input class="name-input" id="customerName" placeholder="Your name" type="text" maxlength="60" autocomplete="name">
+    <input class="phone-input" id="customerPhone" placeholder="WhatsApp number (+91...)" type="tel" maxlength="15" autocomplete="tel">
+    <!-- HONEYPOT: hidden field, bots fill this, humans don't -->
+    <input type="text" id="hp_field" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true">
     <button class="whatsapp-btn" onclick="sendWhatsApp()">
       <span class="whatsapp-icon">📱</span>
       Send Order via WhatsApp
@@ -1152,6 +1264,102 @@ footer {
   </div>
 </section>
 
+<!-- SUBSCRIPTIONS -->
+<section id="subscriptions">
+  <div class="section-label">Monthly Plans</div>
+  <div class="section-title">SUBSCRIBE &<br>SAVE BIG</div>
+  <p style="color:var(--gray);font-size:1rem;max-width:520px;line-height:1.7;margin-top:12px;">Lock in your nutrition every month. No decision fatigue, no missed meals — just consistent fuel delivered daily.</p>
+
+  <div class="sub-grid reveal">
+
+    <div class="sub-card">
+      <div class="sub-icon">🥗</div>
+      <div class="sub-name">DAILY BASICS</div>
+      <div class="sub-tagline">2 BASE MEALS / DAY</div>
+      <div class="sub-price"><span>₹</span>8,999</div>
+      <div class="sub-per">per month · ~₹300/day</div>
+      <ul class="sub-features">
+        <li>2 base meals every day</li>
+        <li>~600 kcal per meal</li>
+        <li>30g protein per meal</li>
+        <li>Non-veg &amp; veg options</li>
+        <li>WhatsApp order management</li>
+      </ul>
+      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Daily Basics plan (₹8,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-icon">👑</div>
+      <div class="sub-name">VIP DAILY</div>
+      <div class="sub-tagline">1 VIP MEAL / DAY</div>
+      <div class="sub-price"><span>₹</span>11,999</div>
+      <div class="sub-per">per month · ~₹400/day</div>
+      <ul class="sub-features">
+        <li>1 VIP high-protein meal daily</li>
+        <li>900–1000 kcal per meal</li>
+        <li>~100g protein per meal</li>
+        <li>Non-veg premium selection</li>
+        <li>Priority WhatsApp support</li>
+      </ul>
+      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the VIP Daily plan (₹11,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+    </div>
+
+    <div class="sub-card best-value">
+      <div class="sub-best-badge">⭐ Most Popular</div>
+      <div class="sub-icon">🔥</div>
+      <div class="sub-name">COMPLETE FUEL</div>
+      <div class="sub-tagline">2 FULL MEALS / DAY</div>
+      <div class="sub-price"><span>₹</span>14,999</div>
+      <div class="sub-per">per month · ~₹500/day</div>
+      <ul class="sub-features">
+        <li>2 complete meals every day</li>
+        <li>&lt;800 kcal per meal</li>
+        <li>50–60g protein per meal</li>
+        <li>Non-veg &amp; veg options</li>
+        <li>Priority WhatsApp support</li>
+      </ul>
+      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Complete Fuel plan (₹14,999/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-icon">💪</div>
+      <div class="sub-name">ATHLETE PACK</div>
+      <div class="sub-tagline">VIP + MEAL + SHAKE / DAY</div>
+      <div class="sub-price"><span>₹</span>20,000</div>
+      <div class="sub-per">per month · ~₹667/day</div>
+      <ul class="sub-features">
+        <li>1 VIP high-protein meal daily</li>
+        <li>1 full meal daily</li>
+        <li>1 protein shake daily</li>
+        <li>~150g+ protein per day</li>
+        <li>Dedicated nutrition support</li>
+      </ul>
+      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Athlete Pack (₹20,000/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-icon">🏆</div>
+      <div class="sub-name">ELITE 3-MEAL</div>
+      <div class="sub-tagline">3 COMPLETE MEALS / DAY</div>
+      <div class="sub-price"><span>₹</span>22,000</div>
+      <div class="sub-per">per month · ~₹733/day</div>
+      <ul class="sub-features">
+        <li>3 complete meals every day</li>
+        <li>Full macro coverage daily</li>
+        <li>150–180g protein per day</li>
+        <li>Non-veg &amp; veg options</li>
+        <li>VIP WhatsApp concierge</li>
+      </ul>
+      <a href="https://wa.me/917097041206?text=${encodeURIComponent('Hi! I want to subscribe to the Elite 3-Meal plan (₹22,000/month). Please share details.')}" target="_blank" class="sub-cta">Subscribe Now →</a>
+    </div>
+
+  </div>
+  <div class="sub-note">
+    All subscriptions are managed via WhatsApp. <br>
+    Questions? <a href="https://wa.me/917097041206" target="_blank">Chat with us directly →</a>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
@@ -1192,6 +1400,7 @@ footer {
       <ul class="footer-links">
         <li><a href="#menu">Menu</a></li>
         <li><a href="#plans">Meal Plans</a></li>
+        <li><a href="#subscriptions">Subscriptions</a></li>
         <li><a href="#how">How to Order</a></li>
         <li><a href="#about">About</a></li>
       </ul>
@@ -1199,15 +1408,17 @@ footer {
     <div>
       <div class="footer-heading">Contact</div>
       <ul class="footer-links">
-        <li><a href="#">📱 WhatsApp Us</a></li>
-        <li><a href="#">📸 Instagram</a></li>
-        <li><a href="#">📧 Email</a></li>
+        <li><a href="https://wa.me/917097041206" target="_blank">📱 WhatsApp Us</a></li>
+        <li><a href="https://www.instagram.com/healthieezz?igsh=MTF0NjhkNjcxZHhyYQ%3D%3D&utm_source=qr" target="_blank">📸 Instagram</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 Healthieezz. Built with 💚 for gains.</div>
-    <a href="#" class="footer-wa">📱 Order on WhatsApp</a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="https://www.instagram.com/healthieezz?igsh=MTF0NjhkNjcxZHhyYQ%3D%3D&utm_source=qr" target="_blank" style="display:flex;align-items:center;gap:8px;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.25);color:#E1306C;padding:8px 16px;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(225,48,108,0.2)'" onmouseout="this.style.background='rgba(225,48,108,0.1)'">📸 @healthieezz</a>
+      <a href="https://wa.me/917097041206" target="_blank" class="footer-wa">📱 Order on WhatsApp</a>
+    </div>
   </div>
 </footer>
 
@@ -1228,8 +1439,9 @@ function animCursor() {
 }
 animCursor();
 
-// ─── MENU DATA ────────────────────────────────────
-const WHATSAPP_NUMBER = '919985893236'; // ← REPLACE with your number
+// ─── SECURITY: Obfuscated WhatsApp number ─────────
+// 917097041206 base64 = OTE3MDk3MDQxMjA2
+const WHATSAPP_NUMBER = atob('OTE3MDk3MDQxMjA2');
 
 const menuItems = [
   // NON-VEG
@@ -1391,14 +1603,63 @@ function toggleCart() {
   overlay.classList.toggle('open');
 }
 
+// ─── SECURITY: Rate Limiting ──────────────────────
+const _rl = { count: 0, first: null, max: 3, window: 10 * 60 * 1000 };
+function _checkRateLimit() {
+  const now = Date.now();
+  if (!_rl.first || now - _rl.first > _rl.window) {
+    _rl.first = now; _rl.count = 0;
+  }
+  _rl.count++;
+  if (_rl.count > _rl.max) {
+    const wait = Math.ceil((_rl.window - (now - _rl.first)) / 60000);
+    showToast(`Too many orders. Please wait ${wait} min.`); return false;
+  }
+  return true;
+}
+
+// ─── SECURITY: Input Sanitiser ────────────────────
+function _sanitise(str) {
+  return str.replace(/[<>"'`;&|\\\/]/g, '').trim().slice(0, 100);
+}
+
+// ─── SECURITY: Phone Validator ────────────────────
+function _validPhone(p) {
+  if (!p) return true; // phone is optional
+  const clean = p.replace(/[\s\-\(\)]/g, '');
+  return /^\+?[0-9]{10,15}$/.test(clean);
+}
+
 // ─── WHATSAPP ORDER ───────────────────────────────
 function sendWhatsApp() {
+  // 1. Cart check
   if (cart.length === 0) { showToast('Add items to your cart first!'); return; }
-  const name = document.getElementById('customerName').value.trim() || 'Customer';
-  const phone = document.getElementById('customerPhone').value.trim();
+
+  // 2. Honeypot check — bots fill hidden field, humans don't
+  const hp = document.getElementById('hp_field').value;
+  if (hp && hp.length > 0) {
+    console.warn('Bot detected via honeypot.');
+    showToast('Order submitted!'); // fake success for bots
+    return;
+  }
+
+  // 3. Rate limit check
+  if (!_checkRateLimit()) return;
+
+  // 4. Input validation
+  const rawName = document.getElementById('customerName').value.trim();
+  const rawPhone = document.getElementById('customerPhone').value.trim();
+
+  if (!rawName) { showToast('Please enter your name.'); return; }
+  if (rawName.length < 2) { showToast('Name must be at least 2 characters.'); return; }
+  if (rawPhone && !_validPhone(rawPhone)) { showToast('Please enter a valid phone number.'); return; }
+
+  // 5. Sanitise inputs before sending
+  const name = _sanitise(rawName) || 'Customer';
+  const phone = _sanitise(rawPhone);
 
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
-  const lines = cart.map(c => `  • ${c.emoji} ${c.name} (${c.plan.toUpperCase()}) x${c.qty} — ₹${c.price * c.qty}`).join('\n');
+  const lines = cart.map(c => `  • ${c.emoji} ${_sanitise(c.name)} (${c.plan.toUpperCase()}) x${c.qty} — ₹${c.price * c.qty}`).join('\n');
 
   const msg = `🥗 *HEALTHIEEZZ ORDER*\n\n*Name:* ${name}\n${phone ? `*Phone:* ${phone}\n` : ''}\n*Items:*\n${lines}\n\n*Total: ₹${total}*\n\n_Sent via healthieezz.vercel.app_`;
 
